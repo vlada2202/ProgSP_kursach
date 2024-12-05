@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<head>
+    <title th:text="${dealership.name}"></title>
+    <link rel="stylesheet" href="/cart_style.css">
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column h-100" style="background-color: #555555">
+
+<header th:insert="blocks/header :: header" class="sticky-top" role="navigation"></header>
+
+<hr class="clear">
+
+<main class="container flex-shrink-0 bg-light">
+    <div class="row">
+        <div class="col-lg-12 my-3">
+            <h1 th:text="${dealership.name}">Name</h1>
+        </div>
+        <div class="col-lg-4 mb-3">
+            <img class="poster-car w-100" th:attr="src=${'/img/' + dealership.poster}">
+            <div th:if="${dealership.owner.id == user.id or role == 'ADMIN'}">
+                <div th:if="${dealership.owner.id == user.id}" class="btn-group mt-3">
+                    <a th:href="'/cars/add/' + ${dealership.id}" class="btn btn-primary" style="background-color: #463f3a; border-color: #463f3a;" >Добавить машину</a>
+                </div>
+                <div class="btn-group mt-3">
+                    <a th:href="'/dealerships/edit/' + ${dealership.id}" class="btn btn-primary" style="background-color: #463f3a; border-color: #463f3a;">Редактировать</a>
+                </div>
+                <div class="btn-group mt-3">
+                    <a th:href="'/dealerships/delete/' + ${dealership.id}" class="btn btn-danger" style="background-color: #e54b4b; border-color: #f87060;">Удалить</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-8">
+            <div>
+                <b>Адрес: </b>
+                <span th:text="${dealership.address}"></span>
+            </div>
+            <div>
+                <b>Контактные данные: </b>
+                <span th:text="${dealership.contact}"></span>
+            </div>
+            <div>
+                <b>График работы: </b>
+                <span th:text="${dealership.schedule}"></span>
+            </div>
+            <div class ="description">
+                <h3>Описание</h3>
+                <p class="description text-break" th:text="${dealership.description}"></p>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-lg-3" th:each="s : ${dealership.cars}">
+            <div class="card mb-4 rounded-3 shadow-sm">
+                <a class="car" th:href="'/cars/' + ${s.id}">
+                    <img class="poster-car mb-3" th:src="'/img/' + ${s.poster}" width="100%">
+                    <h4 th:text="${s.name}" class="card-title pricing-card-title mx-3" style="color: black">Название</h4>
+                </a>
+                <ul class="list-unstyled mt-3 mb-3 mx-3">
+                    <li><B>Марка:</B> <span th:text="${s.dealership.brand.name}"></span></li>
+                    <li><B>Год выпуска</B> <span th:text="${s.year}"></span></li>
+                    <li><B>Цена:</B> <span th:text="${s.income.price}"></span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="pt-5"></div>
+</main>
+
+<script type="text/javascript" src="/car_script.js"></script>
+
+<hr class="clear">
+
+
+</body>
+
+</html>

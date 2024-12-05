@@ -1,0 +1,11 @@
+main div.poster img {
+    border-radius: 5px;
+    width: 100%;
+}
+
+main div.buy button.btn-primary {
+    width: 100%;
+}
+.description{
+    margin-top: 20px;
+}

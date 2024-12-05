@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Профиль</title>
+    <link rel="stylesheet" href="/static/login_reg_profile_style.css">
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+
+<body class="d-flex flex-column h-100" style="background-color: #555555">
+
+<header th:insert="blocks/header :: header" class="sticky-top" role="navigation"></header>
+
+<main class="container flex-shrink-0 bg-light form-signin">
+    <div class="pt-5 pb-3">
+        <div style="text-align: center;">
+            <p class="fs-3">Аналитика</p>
+        </div>
+    </div>
+    <div class="text-center mb-3">
+        <a onclick="generatePDF()" class="btn btn-primary w-25">Скачать отчет в формате PDF</a>
+    </div>
+    <div th:if="${role == 'ADMIN'}">
+        <div id="drawDealer" style="width: 100%; height: 500px;"></div>
+    </div>
+    <div id="drawBrand" style="width: 100%; height: 500px;"></div>
+    <div id="generatePDF" class="row" style="margin: 0;">
+        <p class="text-center fs-3">Анализ акций</p>
+        <div class="col-lg-12 input-group">
+            <p class="form-control">Название</p>
+            <p class="form-control">Количество проданных</p>
+            <p class="form-control">Стоимость одной</p>
+            <p class="form-control">Выручка</p>
+        </div>
+        <div th:each="s : ${cars}" class="col-lg-12 input-group">
+            <p th:text="${s.name}" class="form-control">Название</p>
+            <p th:text="${s.income.count}" class="form-control">Количество проданных</p>
+            <p th:text="${s.income.price}" class="form-control">Стоимость одной</p>
+            <p th:text="${s.income.income}" class="form-control">Выручка</p>
+        </div>
+        <div class="col-lg-12 input-group">
+            <p class="form-control">Суммарная выручка</p>
+            <p class="form-control"></p>
+            <p class="form-control"></p>
+            <p th:text="${income}" class="form-control"></p>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script th:inline="javascript" type="text/javascript">
+    var topName = /*[[${topName}]]*/ [];
+    var topNum = /*[[${topNum}]]*/ [];
+    var dealerString = /*[[${dealerString}]]*/ [];
+    var dealerInt = /*[[${dealerInt}]]*/ [];
+
+    var brandChartWrapper = document.createElement('div');
+    brandChartWrapper.style.width = '8in';
+    brandChartWrapper.style.height = '5in';
+
+    function generatePDF() {
+        var tempElement = document.createElement('div');
+
+        tempElement.appendChild(document.getElementById('generatePDF'));
+
+        var brandChart = document.getElementById('drawBrand').cloneNode(true);
+        var brandChartWrapper = document.createElement('div');
+        brandChartWrapper.style.width = '9in';
+        brandChartWrapper.style.height = '6in';
+        brandChartWrapper.appendChild(brandChart);
+        tempElement.appendChild(brandChartWrapper);
+
+        if (document.getElementById('drawDealer')) {
+            var dealerChart = document.getElementById('drawDealer').cloneNode(true);
+            var dealerChartWrapper = document.createElement('div');
+            dealerChartWrapper.style.width = '9in';
+            dealerChartWrapper.style.height = '6in';
+            dealerChartWrapper.appendChild(dealerChart);
+            tempElement.appendChild(dealerChartWrapper);
+        }
+
+        var opt = {
+            margin: [0, 0, 0, 0],
+            filename: 'Анализ акций.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 1},
+            jsPDF: {
+                unit: 'in',
+                format: 'a4',
+                orientation: 'landscape'
+            },
+            pagebreak: {
+                mode: 'avoid-all',
+                before: ['#brandChartWrapper', '#dealerChartWrapper']
+            }
+        };
+        html2pdf().set(opt).from(tempElement).save();
+    }
+</script>
+<script src="/static/stats.js"></script>
+</body>
+
+</html>

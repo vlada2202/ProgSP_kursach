@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Профили</title>
+    <link rel="stylesheet" href="/static/login_reg_profile_style.css">
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column h-100" style="background-color: #555555">
+
+<header th:insert="blocks/header :: header" class="sticky-top" role="banner"></header>
+
+<hr class="clear">
+
+<main class="container flex-shrink-0 bg-light form-signin">
+    <div style="text-align: center;">
+        <h2 class="my-3">Обновить данные профилей</h2>
+        <form th:each="user : ${users}" class="row mb-2" th:action="'/users/edit/' + ${user.id}" method="post">
+            <div class="col">
+                <input class="form-control" th:value="${user.username}" disabled/>
+            </div>
+            <div class="col">
+                <select class="form-select" name="role" required>
+                    <option th:each="r : ${roles}" th:value="${r}" th:label="${r.name}"
+                            th:selected="${r == user.role}"></option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" type="submit">Обновить</button>
+            </div>
+            <div class="col-auto">
+                <a th:href="'/users/delete/' + ${user.id}" class="btn btn-danger">Удалить</a>
+            </div>
+            <div class="col-2">
+                <a th:if="${user.app == true}" th:href="'/users/app/' + ${user.id}"
+                   class="btn btn-success w-100">Одобрить заявку</a>
+            </div>
+        </form>
+    </div>
+</main>
+
+</body>
+
+</html>

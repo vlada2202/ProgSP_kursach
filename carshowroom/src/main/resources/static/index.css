@@ -1,0 +1,126 @@
+body {
+    background-color: #555555 !important;
+    color: #FFF9F9 !important;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.text-white {
+    color: #FFF9F9 !important;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.row {
+    margin-top: 64px;
+    margin-bottom: 48px;
+}
+
+.text-center {
+    margin-bottom: 32px;
+}
+
+.text-center.fs-1 {
+    font-size: 34px !important;
+}
+
+.fs-5 {
+    font-size: 20px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.advantage-card {
+    width: 275px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(217, 217, 217, 0.30);
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.advantage-card:hover {
+    transform: scale(1.05);
+}
+
+.advantage-title {
+    color: white;
+    font-size: 19px;
+    font-family: 'Prata', serif;
+    font-weight: 400;
+    line-height: 30px;
+    text-align: center;
+    word-wrap: break-word;
+    margin-bottom: 15px;
+}
+
+.advantage-icon {
+    width: 160px;
+    height: 160px;
+}
+
+.mb-5 {
+    margin-bottom: 48px;
+}
+
+.pt-5 {
+    padding-top: 48px;
+}
+
+.row {
+    margin-bottom: 48px;
+}
+
+hr.clear {
+    border: none;
+    border-top: 1px solid #ffffff;
+}
+
+.button-action {
+    display: block;
+    height: 40px;
+    width: 217px;
+    margin: 20px auto;
+    background-color: #F6C343;
+    color: black;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.button-action:hover {
+    background-color: #F5CA5E;
+}
+
+.container-lg {
+    margin-top: 52px;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.car {
+    padding: 0;
+}
+
+.text{
+    text-align: justify;
+}

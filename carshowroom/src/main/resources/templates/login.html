@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/static/login_reg_profile_style.css">
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column h-100" style="background-color: #555555">
+
+<header th:insert="blocks/header :: header" class="sticky-top" role="navigation"></header>
+
+<hr class="clear">
+
+<main class="container">
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="col-6 mt-5">
+            <div class="bg-light rounded shadow p-4">
+                <p class="text-center fs-3 my-3">Авторизация</p>
+
+                <form class="needs-validation" method="post" action="/login">
+                    <div class="form-floating mb-3">
+                        <input maxlength="20" type="text" class="form-control" id="username" name="username"
+                               placeholder="Имя пользователя" required>
+                        <label for="username">Имя пользователя</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Пароль">
+                        <label for="password">Пароль</label>
+                    </div>
+                    <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">Авторизация</button>
+                </form>
+
+                <div th:if="${param.error}" class="w-100 alert alert-primary">
+                    <p class="m-0 fs-5 text-center">Некорректный ввод логина или пароля!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+
+</html>

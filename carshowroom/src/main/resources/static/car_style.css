@@ -1,0 +1,87 @@
+main div.col-lg-12 h1 {
+    text-align: center;
+}
+
+main img.poster-car {
+    width: 100%;
+    border: 1px solid silver;
+    border-radius: 5px;
+    box-shadow: 0 0 10px;
+}
+
+main div.col-lg-8 div a {
+    text-decoration: none;
+}
+
+main div.col-lg-12 h4 {
+    text-align: center;
+}
+
+main p.description {
+    text-align: justify;
+}
+
+main div.photo {
+    overflow-x: auto; /*включает прокрутку горизонтальную*/
+    white-space: nowrap; /*все содержимое будет в одной строке*/
+}
+
+main div.photo img {
+    display: inline-block;
+    vertical-align: top; /*по верхнему краю*/
+    width: 23%;
+    border-radius: 5px;
+    margin: 1%;
+    box-shadow: 0 0 5px;
+}
+
+main img.review {
+    border-radius: 5px;
+    width: 80%;
+    box-shadow: 0 0 10px;
+}
+
+.btn-custom {
+    background-color: #463f3a !important;
+    border-color: #463f3a;
+    color: white !important;
+}
+
+.btn-custom:hover {
+    background-color: #453F3B !important;
+    border-color: #5a4e44;
+    opacity: 85%;
+    color: white !important;
+}
+
+.btn-reset {
+    background-color: #453F3B !important;
+    border-color: #453F3B;
+    color: white !important;
+    opacity: 80%;
+}
+
+.btn-reset:hover {
+    background-color: #605A56 !important;
+    border-color: #605A56;
+    opacity: 60%;
+    color: white !important;
+}
+
+.btn-danger {
+    background-color: #e54b4b;
+    border-color: #f87060;
+}
+
+.btn-danger:hover {
+    background-color: #f87060;
+    border-color: #e54b4b;
+}
+.description {
+    font-family: 'Arial', sans-serif;
+    font-size: 17px;
+    line-height: 1.4;
+    color: #333;
+    text-align: justify;
+    margin-top: 20px;
+}

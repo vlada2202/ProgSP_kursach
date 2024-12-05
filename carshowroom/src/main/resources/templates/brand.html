@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Марки</title>
+    <style>
+        .btn-equal-size {
+            width: 102px;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column h-100" style="background-color: #555555">
+
+<header th:insert="blocks/header :: header" class="sticky-top"></header>
+
+<hr class="clear">
+
+<main class="container flex-shrink-0 bg-light">
+    <div class="pt-4"></div>
+
+    <form action="/brand/add" method="post">
+        <div class="row">
+            <div class="col">
+                <input type="text" required class="form-control" name="name" placeholder="Наименование">
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary btn-equal-size" type="submit" style="background-color: #463f3a; border-color: #463f3a;">Добавить</button>
+            </div>
+        </div>
+    </form>
+
+    <hr>
+
+    <form th:each="i : ${brands}" th:action="${'/brand/' + i.id + '/edit'}" method="post" class="mb-2">
+        <div class="row">
+            <div class="col">
+                <input type="text" required class="form-control" name="name" placeholder="Наименование" th:value="${i.name}">
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary btn-equal-size" type="submit" style="background-color: #463f3a; border-color: #463f3a;">Обновить</button>
+            </div>
+            <div class="col-auto">
+                <a th:href="${'/brand/' + i.id + '/delete'}" class="btn btn-danger btn-equal-size" style="background-color: #e54b4b; border-color: #f87060;">Удалить</a>
+            </div>
+        </div>
+    </form>
+
+    <div class="pt-4"></div>
+</main>
+
+<script type="text/javascript" src="/static/catalog_script.js"></script>
+</body>
+
+</html>

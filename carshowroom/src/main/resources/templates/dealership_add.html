@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org" lang="ru">
+
+<head>
+    <title>Добавление автосалон</title>
+    <link rel="stylesheet" href="/car_add_edit_style.css">
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column h-100" style="background-color: #555555">
+
+<header th:insert="blocks/header :: header" class="sticky-top" role="navigation"></header>
+
+<hr class="clear">
+
+<main class="container-lg flex-shrink-0 bg-light">
+    <form action="/dealerships/add" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-12 input-group flex-nowrap size-150">
+                <label for="name" class="input-group-text">Название</label>
+                <input id="name" name="name" type="text" class="form-control" placeholder="Название"
+                       required>
+            </div>
+            <div class="col-lg-6 size-150">
+                <div class="input-group">
+                    <label for="poster" class="input-group-text">Фото</label>
+                    <input id="poster" name="poster" type="file" class="form-control"
+                           accept=".jpg,.jpeg,.png" required>
+                </div>
+                <div class="input-group">
+                    <label for="brand" class="input-group-text">Марка</label>
+                    <select name="brandId" id="brand" required class="form-select">
+                        <option th:each="b : ${brands}" th:value="${b.id}" th:label="${b.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6 size-200">
+                <div class="input-group">
+                    <label for="address" class="input-group-text">Адрес</label>
+                    <input id="address" name="address" type="text"
+                           class="form-control" placeholder="Адрес" required>
+                </div>
+                <div class="input-group">
+                    <label for="contact" class="input-group-text">Контактные данные</label>
+                    <input id="contact" name="contact" type="text" class="form-control" placeholder="Контактные данные"
+                           required>
+                </div>
+                <div class="input-group">
+                    <label for="schedule" class="input-group-text">График работы</label>
+                    <input id="schedule" name="schedule" type="text" class="form-control" placeholder="График работы"
+                           required>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <h4><label for="description">Описание</label></h4>
+                <input class="form-control" name="description" type="text" id="description" required>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" style="background-color: #463f3a; border-color: #463f3a;">Добавить</button>
+        <button class="btn btn-primary" type="reset" style="background-color: #463f3a; border-color: #463f3a;">Очистить</button>
+        <a class="btn btn-primary" href="/dealerships" style="background-color: #e54b4b; border-color: #f87060;">Отмена</a>
+    </form>
+    <div class="pt-3"></div>
+</main>
+
+<hr class="clear">
+
+
+</body>
+
+</html>

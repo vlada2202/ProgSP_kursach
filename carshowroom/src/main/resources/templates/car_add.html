@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Добавление</title>
+    <link rel="stylesheet" href="/car_add_edit_style.css">
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column h-100" style="background-color: #555555">
+
+<header th:insert="blocks/header :: header" class="sticky-top" role="navigation"></header>
+
+<hr class="clear">
+
+<main class="container-lg flex-shrink-0 bg-light">
+    <div class="p-2">
+        <div th:if="${message}" class="col-lg-12 w-100 alert alert-primary text-center" role="alert">
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+
+    <form action="/cars/add" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-lg-12 input-group flex-nowrap size-200">
+                <label for="name" class="input-group-text">Название</label>
+                <input id="name" name="name" type="text" class="form-control"
+                       required>
+            </div>
+            <div class="col-lg-6 size-200">
+                <div class=" input-group">
+                    <label for="origin" class="input-group-text">Страна производства</label>
+                    <input id="origin" name="origin" type="text" class="form-control"
+                           required>
+                </div>
+                <div class="input-group">
+                    <label for="dealerships" class="input-group-text">Автосалон</label>
+                    <input id="dealerships" type="text" class="form-control" th:value="${dealership.name}" required
+                           readonly>
+                </div>
+                <div class="input-group">
+                    <label for="poster" class="input-group-text">Фото</label>
+                    <input id="poster" name="poster" type="file" class="form-control"
+                           accept=".jpg,.jpeg,.png" required>
+                </div>
+                <div class="input-group">
+                    <label for="screenshots" class="input-group-text">Фото машины</label>
+                    <input id="screenshots" name="screenshots" type="file" class="form-control"
+                           accept=".jpg,.jpeg,.png" required multiple>
+                </div>
+                <div class="input-group">
+                    <label for="capacity" class="input-group-text">Объем двигателя (л)</label>
+                    <input id="capacity" name="capacity" type="number" min="0.1" step="0.1" class="form-control"
+                           required>
+                </div>
+                <div class="input-group">
+                    <label for="mileage" class="input-group-text">Пробег (км)</label>
+                    <input id="mileage" name="mileage" type="number" min="1" step="1" class="form-control" required>
+                </div>
+                <div class="input-group">
+                    <label for="consumption" class="input-group-text">Расход топлива (л)</label>
+                    <input id="consumption" name="consumption" type="number" min="1" step="1" class="form-control"
+                           required>
+                </div>
+            </div>
+            <div class="col-lg-6 size-200">
+                <div class=" input-group">
+                    <label for="dateStart" class="input-group-text">Дата начало</label>
+                    <input id="dateStart" name="dateStart" type="date" class="form-control" required>
+                </div>
+                <div class=" input-group">
+                    <label for="dateEnd" class="input-group-text">Дата окончания</label>
+                    <input id="dateEnd" name="dateEnd" type="date" class="form-control" required>
+                </div>
+                <div class=" input-group">
+                    <label for="year" class="input-group-text">Год выпуска</label>
+                    <input id="year" name="year" type="number" step="1"
+                           class="form-control" required>
+                </div>
+                <div class="input-group">
+                    <label for="price" class="input-group-text">Цена ($)</label>
+                    <input id="price" name="price" type="number" step="1"
+                           class="form-control" required>
+                </div>
+                <div class="input-group">
+                    <label for="weight" class="input-group-text">В автосалоне (шт)</label>
+                    <input id="weight" name="count" type="number" step="1" class="form-control"
+                           required>
+                </div>
+                <div class="input-group" hidden>
+                    <label for="dealershipId" class="input-group-text"></label>
+                    <input id="dealershipId" name="dealershipId" type="number" class="form-control"
+                           th:value="${dealership.id}" required>
+                </div>
+                <div class="input-group">
+                    <label for="discount" class="input-group-text">Скидка (%)</label>
+                    <input id="discount" name="discount" type="number" class="form-control" required min="0" step="1"
+                           max="100">
+                </div>
+                <div class="input-group">
+                    <label for="fuel" class="input-group-text">Тип двигателя</label>
+                    <select name="fuel" id="fuel" required class="form-select">
+                        <option th:each="f : ${fuels}" th:value="${f}" th:label="${f.name}"></option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="transmission" class="input-group-text">Коробка передач</label>
+                    <select name="transmission" id="transmission" required class="form-select">
+                        <option th:each="t : ${transmissions}" th:value="${t}" th:label="${t.name}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <h4><label for="description">Описание</label></h4>
+                <input type="text" class="form-control" name="description" id="description" required>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit" style="background-color: #463f3a; border-color: #463f3a;">Добавить</button>
+        <button class="btn btn-primary" type="reset" style="background-color: #463f3a; border-color: #463f3a;">Очистить</button>
+        <a class="btn btn-primary" href="/catalog/all" style="background-color: #e54b4b; border-color: #f87060;">Отмена</a>
+    </form>
+    <div class="pt-3"></div>
+</main>
+
+<hr class="clear">
+
+
+</body>
+
+</html>

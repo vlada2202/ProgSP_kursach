@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html class="h-100" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Мои заказы</title>
+    <link rel="stylesheet" href="/static/cart_style.css">
+</head>
+
+<head th:insert="blocks/head :: head"></head>
+
+<body class="d-flex flex-column h-100" style="background-color: #555555">
+
+<header th:insert="blocks/header :: header" class="sticky-top" role="navigation"></header>
+
+<hr class="clear">
+
+<main class="container-lg flex-shrink-0 bg-light">
+    <div class="row">
+
+        <div style="text-align: center;"><h1>Мои заказы</h1></div>
+
+        <div th:if="${user.app == false}" class="text-center">
+            <a href="/cart/app" class="btn btn-primary w-25" style="background-color: #463f3a; border-color: #463f3a;">Подать заявку на дилера</a>
+        </div>
+
+
+        <div th:each="c : ${user.getCarts()}" class="col-lg-6 mt-3">
+            <div class="alert alert-secondary" style="background-color: #444444; border-color: #463f3a; color: white; padding: 20px;">
+                <div class="row">
+                    <div class="col-lg-4 poster">
+                        <a th:href="'/cars/' + ${c.car.id}">
+                            <img th:src="'/img/' + ${c.car.poster}" style="border: none; outline: none; width: 100%; max-width: 400px; height: auto;">
+                        </a>
+                    </div>
+                    <div class="col-lg">
+                        <h4 th:text="${c.car.name}" class="card-title pricing-card-title mx-3 text-break" style="color: white;"></h4>
+                        <ul class="list-unstyled mt-3 mb-3 mx-3" style="color: white;">
+                            <li><b>Марка:</b> <span th:text="${c.car.dealership.brand.name}"></span></li>
+                            <li><b>Цена:</b> <span th:text="${c.sum + '$'}"></span></li>
+                            <li>
+                                <a th:href="${'/cart/' + c.id + '/delete'}" class="btn btn-warning mt-2 shadow">Отменить заказ</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div style="height: 20px;"></div>
+        </div>
+    </div>
+    </div>
+    <div class="pt-5"></div>
+</main>
+
+<hr class="clear">
+
+
+
+
+</body>
+
+</html>

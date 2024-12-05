@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html lang="ru" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная страница | CarDeal</title>
+    <link rel="stylesheet" href="/static/index.css">
+    <head th:insert="blocks/head :: head"></head>
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+</head>
+
+<body class="d-flex flex-column h-100">
+
+<header th:insert="blocks/header :: header" class="sticky-top"></header>
+
+<main class="container-lg">
+    <div class="row mb-5">
+        <div class="col">
+            <p class="fs-1 text-center text-white" style="font-family: 'Besley', sans-serif;">CarDeal</p>
+            <p class="fs-5 text-white text-justify">
+                Мечтаете о новом автомобиле, но не хотите переплачивать? CarDeal поможет Вам найти лучшие предложения
+                без лишних хлопот. Просто выберите интересующую Вас скидочную акцию, и мы расскажем Вам о ней все!
+            </p>
+            <div class="button-action">
+                <a href="/catalog/all" class="btn">Скидочные акции</a>
+            </div>
+        </div>
+        <div class="col">
+            <img src="/img/def/80.png" alt="Car Image" class="d-block w-100">
+        </div>
+    </div>
+    <hr>
+    <div class="text-center text-white fs-1" style="font-family: Besley, sans-serif;">Наши преимущества</div>
+    <div class="row">
+        <div class="col-3">
+            <div class="advantage-card">
+                <div class="advantage-title">Широкий выбор акций</div>
+                <img src="/img/def/discount.png" alt="Discount" class="advantage-icon">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="advantage-card">
+                <div class="advantage-title">Персонализированные рекомендации</div>
+                <img src="/img/def/recommend.png" alt="Recommendations" class="advantage-icon">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="advantage-card">
+                <div class="advantage-title">Легкость использования</div>
+                <img src="/img/def/easy.png" alt="Ease of use" class="advantage-icon">
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="advantage-card">
+                <div class="advantage-title">Надежность и актуальность данных</div>
+                <img src="/img/def/safity.png" alt="Safety" class="advantage-icon">
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="text-center text-white fs-1" style="font-family: Besley, sans-serif;">Контакты</div>
+    <p style="text-align: center; margin-bottom: 50px;">Не нашли необходимую акцию на сайте? Обратитесь в отдел продаж по телефону +375 25 537 27 89
+        и мы подберем для вас автомобиль, который будет полностью соответствовать вашим предпочтениям.</p>
+    <div id="map" style="width: 900px; height: 400px; margin: 0 auto; margin-bottom: 25px;"></div>
+</main>
+<script src="../static/map.js" ></script>
+</body>
+</html>

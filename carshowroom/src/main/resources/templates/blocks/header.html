@@ -1,0 +1,30 @@
+<div th:fragment="header">
+    <header class="p-2 text-white" style="background: #444444">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                <a href="/">
+                    <img src="/img/def/free-icon-car-4936660.png" alt="Описание изображения" style="margin-right: 10px; width: 50px; height: 50px;">
+                </a>
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/" class="nav-link px-2 text-white">Главная</a></li>
+                    <li><a href="/catalog/all" class="nav-link px-2 text-white">Скидочные акции</a></li>
+                    <li><a href="/dealerships" class="nav-link px-2 text-white">Автосалоны</a></li>
+                    <li th:if="${role == 'MANAGER'}"><a href="/dealerships/add" class="nav-link px-2 text-white">Добавить автосалон</a></li>
+                    <li th:if="${role == 'MANAGER'}"><a href="/brand" class="nav-link px-2 text-white">Марки</a></li>
+                    <li th:if="${role == 'USER'}">
+                        <a href="/cart" class="nav-link px-2 text-white">Мои заказы</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center ms-auto" style="margin-left: 20px;">
+                    <a th:if="${role == 'NOT'}" href="/login" type="button" class="btn btn-outline-light me-2">Авторизация</a>
+                    <a th:if="${role != 'NOT' && role != 'USER'}" href="/stats" type="button" class="btn btn-outline-light me-2">Аналитика</a>
+                    <a th:if="${role == 'ADMIN'}" href="/users" type="button" class="btn btn-outline-light me-2">Профили</a>
+                    <a th:if="${role == 'NOT'}" href="/reg" type="button" class="btn btn-warning me-2">Регистрация</a>
+                    <form th:if="${role != 'NOT'}" class="d-flex" action="/logout" method="post">
+                        <button class="btn btn-outline-light me-2">Выйти</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
